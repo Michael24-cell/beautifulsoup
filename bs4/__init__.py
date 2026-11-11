@@ -812,7 +812,10 @@ class BeautifulSoup(Tag):
             self.currentTag = self.tagStack[-1]
         # apply the replacement when the tag finishes
         if self.replacer is not None:
-            tag.name = self.replacer.replace_name(tag.name)
+            self.replacer.apply(tag)
+            # refresh the last element after possible tree changes
+            if self.replacer.xformer is not None:
+                self._most_recent_element = self._last_descendant()
         return self.currentTag
 
     def pushTag(self, tag: Tag) -> None:
