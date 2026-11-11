@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup, SoupReplacer
 
 # check that a file path was supplied
 if len(sys.argv) < 2:
-    sys.exit("No input file supplied. Usage: python3 task6.py <path-to-input-file>")
+    sys.exit("No input file supplied. Usage: python3 task7.py <path-to-input-file>")
 
 file_path = sys.argv[1]
 
@@ -35,8 +35,8 @@ class_replacer = SoupReplacer(attrs_xformer=change_attrs)
 soup = BeautifulSoup(text, parser, replacer=class_replacer)
 
 try:
-    with open(file_path + ".blockquote", "w", encoding="utf-8") as output_file:
+    with open(file_path + ".class-test", "w", encoding="utf-8") as output_file:
         output_file.write(soup.prettify())
 except OSError:
-    sys.exit("Could not write output file: " + file_path + ".blockquote")
+    sys.exit("Could not write output file: " + file_path + ".class-test")
 

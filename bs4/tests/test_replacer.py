@@ -15,19 +15,6 @@ def test_id_and_text_survive_after_replacer():
 
     assert str(soup) == '<div id="x">This is an example sentence.</div><p>testing</p>'
 
-# check that the name function changes em tags and leaves p tags alone
-def test_name_xformer_changes_only_em_tags():
-    def change_name(tag):
-        if tag.name == "em":
-            return "b"
-        return tag.name
-
-    replacer = SoupReplacer(name_xformer=change_name)
-    html = "<em>Hello</em><p>Keep this</p>"
-    soup = BeautifulSoup(html, "html.parser", replacer=replacer)
-
-    assert str(soup) == "<b>Hello</b><p>Keep this</p>"
-
 # check that the name function changes only matching tags
 def test_name_xformer_changes_only_em_tags():
     def change_name(tag):
