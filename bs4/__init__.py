@@ -210,6 +210,10 @@ class BeautifulSoup(Tag):
     #: could not be represented in Unicode.
     contains_replacement_characters: bool
 
+    # make loops over soup visit all nested nodes
+    def __iter__(self):
+        return self.descendants
+
     def __init__(
         self,
         markup: _IncomingMarkup = "",
